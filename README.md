@@ -1,6 +1,8 @@
 # CS166_Final
 [The Matrix HQ](https://jdiscipi.w3.uvm.edu/cs166/live)
+
 Use the aforementioned link to explore the live project (in order to test db functionality and flow).
+
 Author email: jdiscipi@uvm.edu
 
 ## Description
