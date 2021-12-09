@@ -1,0 +1,60 @@
+/*
+    author: jdiscipi
+    description: css for my cs166 final project!
+*/
+
+header {
+    width: 100%;
+    height: 25vh;
+    background-color: black;
+    font-size: xx-large;
+    color: white;
+    padding: 2em;
+}
+
+
+main {
+    min-height: 100vh;
+    padding: 2em;
+}
+
+footer {
+    display: block;
+    width: 100%;
+    height: 33vh;
+    background-color: black;
+    color: white;
+    padding: 2em;
+}
+
+#index {
+    background-image: url("../image/background.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    padding: 2em;
+}
+
+h1 {
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+thead tr {
+    padding: 2em;
+}
+
+tr:nth-child(even) {
+    background-color: cadetblue;
+    color: aliceblue;
+}
+
+tbody tr:hover {
+    background-color: aqua;
+    color: black;
+}

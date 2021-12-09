@@ -1,0 +1,7 @@
+AuthType WebAuth
+
+require valid-user
+
+satisfy any
+
+order allow,deny
