@@ -53,10 +53,11 @@ include 'nav.php';
                 print $validationError;
             }
             ?>
-            <label for="newpassword">New Password</label>
-            <input type="password" id="newpassword" name="newpassword">
+            <label for="password">New Password</label>
+            <input type="password" id="password" name="newpassword">
             <input type="submit" value="Reset Password" name="btnPasswordReset">
         </form>
+        <button id="generatePassword">Generate Secure Password</button>
         <?php
     }
     ?>

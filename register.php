@@ -99,9 +99,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST") {
         <label for="username">Username</label>
         <input text="text" id="username" name="username" value=<?php print $username; ?>>
         <label for="password">Password</label>
-        <input text="password" id="password" name="password" value=<?php print $password; ?>>
+        <input type="password" id="password" name="password" value=<?php print $password; ?>>
         <input type="submit" name="registerSubmit">
     </form>
+    <button id="generatePassword">Generate Secure Password</button>
     <a href="login.php">Login</a>
 </main>
 
