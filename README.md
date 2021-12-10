@@ -44,7 +44,9 @@ These users can create other admins using the admin tables from the admin page.
 If you want to have your netId added to the table, please contact Jim or the project author.
 
 ## Credentials
-Roles are granted only by admins who are tied to a uvm netId
+Roles are granted only by admins who are tied to a uvm netId.
+
+The credentials for the database are to be stored in /lib/pass.php (not included here for security reasons). This file is used by Database.php to separate reading from writing (part of the principle of least privilege). 
 
 | username | password | access level (role) |
 |----------|----------|---------------------|
@@ -53,3 +55,63 @@ Roles are granted only by admins who are tied to a uvm netId
 | guest | hOqQ2PhPaRfYlRlUqWa-xEaEs | guest |
 | manager | tGx4pRoTnDxVf$fCkKdLdGkBh | manager |
 | admin | sMiDiNnAlYmBaAb3lTg*lMvRe | admin |
+
+### SETUP Instructions
+Due to my reliance on the MySQL setup provided by silk, it is not possible to spin this up yourself and you must use my live edition.
+
+That being said, I can provide the table structures... but ultimately you will need to use webdb to create the database, set up your reader and writer accounts, and phpmyadmin to create the tables.
+
+## tblAdmin
+
+Database: `JDISCIPI_cs166_final`
+
+Table structure for table `tblAdmin`
+
+CREATE TABLE `tblAdmin` (
+  `netId` varchar(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+Dumping data for table `tblAdmin`
+
+INSERT INTO `tblAdmin` (`netId`) VALUES
+('admin'),
+('jdiscipi'),
+('jreddy1');
+
+Indexes for dumped tables
+
+Indexes for table `tblAdmin`
+
+ALTER TABLE `tblAdmin`
+  ADD PRIMARY KEY (`netId`);
+COMMIT;
+
+## tblUser
+
+Table structure for table `tblUser`
+
+CREATE TABLE `tblUser` (
+  `fldUsername` varchar(12) NOT NULL,
+  `fldPassword` varchar(144) NOT NULL,
+  `fldLevel` varchar(15) NOT NULL,
+  `fldLoginAttempts` int(11) NOT NULL,
+  `fldResetPassword` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+Dumping data for table `tblUser`
+
+INSERT INTO `tblUser` (`fldUsername`, `fldPassword`, `fldLevel`, `fldLoginAttempts`, `fldResetPassword`) VALUES
+('accountant', '299469801b0777c64a27c1e06011ec90244ff46c2d5c8a410de1a4742856bce5191ef8be0e206a470b0b1ecf61205b83f7094831be77fa80da5d7195f4de9c565c50c1f375d170fe', 'accountant', 0, 0),
+('admin', '93c6bbefbf82415106ba696b84411727a28aedafe6c2f3739b5c7fe81fcd209246cb0d772789f6059dc7a60e9fd1e3311cdbd2c5dbbbe667a71fbdf034badcea0d1f212a5adae28a', 'admin', 0, 0),
+('dbrown20', '6463ceea3dc2d9e7538d7f2da7477825b0491930635a29046a0e84d4168c6d648c5a44e7a6f33959bb3e77635470ffa7f1dfafdde003d7a6739ce64f69cec78f7dae517d7c7784d1', 'guest', 0, 0),
+('engineer', 'c8aa2c7b77ec90caa62eab474278d4b2a5f2826b2356a2b6e4148990351075908333b7bb2f6af77ef4007003dc6d707b5d35f0ec7358b8dca52a4b1eb5d4b7e411fa2da28095d785', 'engineer', 0, 0),
+('guest', '8f0607a682e535cf846964789b67f36d187fecdc072adbb7871f3084443d584bd0d8c8618bf28c7d5ab25668e081b988cdaa65adfd123b06301cf8726a2e79881d7378b6f44c03aa', 'guest', 0, 0),
+('jdiscipi', '23cffbc921d7903ece2e7e123a82eb4252120fe766110e80d838018ca19d93f6740a7e8a113d1237acff035928009b793b462efa91a4542d7758bd9b61200424bcb60e536c090b90', 'admin', 0, 0),
+('manager', '55fc1031bbca74d6bee1b21c959026bc59f5c2145679b3af91d66e5da90bd079ca303296b8ddd139c16f4a0f8dc7d2d806f6ac218403820415cdde7aea8ca834e8149901ead70691', 'manager', 0, 0);
+
+Indexes for dumped tables
+Indexes for table `tblUser`
+
+ALTER TABLE `tblUser`
+  ADD PRIMARY KEY (`fldUsername`);
+COMMIT;
