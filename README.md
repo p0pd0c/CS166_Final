@@ -7,7 +7,7 @@ Author email: jdiscipi@uvm.edu
 
 ## Description
 This project is a culmination of the information taught in CS166 Cyber Security Principles. The codebase is theoretically secure against XSS and SQL injection attacks/
-The site implements authentication and authorization through role-based access control.
+The site implements authentication using PHP Sessions and authorization through role-based access control.
 
 ## Components
 The project consists of a MySQL database (hosted on silk) and the backend code is interleaved with the front end pages (using PHP). 
