@@ -13,8 +13,10 @@ The site implements authentication and authorization through role-based access c
 The project consists of a MySQL database (hosted on silk) and the backend code is interleaved with the front end pages (using PHP). 
 When a request is made to the webserver, the PHP interpreter will fire up and bake values into the page during execution flow and user navigation.
 The project makes use of PHP Sessions to keep a user logged in until they decide to log out or the session expires.
-The project also implements WebAuth in order to protect admin actions in the DB. In order to get admin rights an admin must first change your role to 'admin' using the admin page.
-Using the admin page as such will also place the user's netId into tblAdmin. Only users present in tblAdmin will be able to authenticate with UVM's WebAuth (meaning that the username must also be a valid netId).
+The project also implements WebAuth in order to protect admin actions in the DB. In order to get admin rights an existing admin must first change your role to 'admin' using the admin page.
+Using the admin page as such will also place the user's netId into tblAdmin. Only users present in tblAdmin will be able to authenticate with UVM's WebAuth (meaning that the username must also be a valid netId) to access the admin tables.
+The admin tables allow admins to reset the login attempts (to unlock a locked account). It also allows the admin to issue a password reset and role changes (mentioned previously). Note: If a user forgets their password... they cannot reset it (admins may delete accounts however).. password resets are only enabled if the admin has requested it and the user can authenticate with the old password. 
+
 
 # WARNING
 DO NOT USE YOUR REAL UVM NETID AND PASSWORD when REGISTERING your account!
