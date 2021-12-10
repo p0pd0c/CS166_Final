@@ -2,16 +2,19 @@
 include 'top.php';
 include 'nav.php';
 
+// Is authenticated?
 if(!isset($_SESSION["username"])) {
     header("Location: login.php");
     die();
 }
 
+// Get info
 $username = $_SESSION["username"];
 $user = ($thisDatabaseReader->select("SELECT fldUsername, fldLevel FROM tblUser WHERE fldUsername = ?", [$username]))[0];
 
 $level = $user["fldLevel"];
 
+// Filter relevant employees
 if($level !== "manager" && $level !== "admin") {
     print "<p>You must be a manager to access this page. Go back to the <a href='index.php'>home page</a>.</p>";
     die();

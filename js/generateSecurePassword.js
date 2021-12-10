@@ -1,7 +1,12 @@
+// Wait for document to load
 $(document).ready(function() {
     console.log("READY")
+    // Add event listener to the generate password button
     $("#generatePassword").click(function() {
+        // remove the button
         $(this).slideUp();
+
+        // Generate password based on guidelines
         let newpassword = ""
         let specialChars = "!@#$^&*()-+,"
         specialChars = specialChars.split("")
@@ -35,10 +40,14 @@ $(document).ready(function() {
         }
         newpassword[randomNewIndex] = specialChars[randomSpecialIndex]
         newpassword = newpassword.join("")
+
+        // Append the password to the document 
         $(this).parent().append(`<p>${newpassword}</p>`);
     })
 })
 
+// Helper function
+// Get a random num in the range [min, max]
 function randomNum(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min; // You can remove the Math.floor if you don't want it to be an integer
 }
