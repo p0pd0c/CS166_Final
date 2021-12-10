@@ -29,6 +29,8 @@ When a user is on the register page or viewing the password reset form (resultin
 
 Clicking the button will generate a new password on the client side (prints it to the screen) and the user can choose to copy this password and paste it into the password field or make their own.
 
+### Account locking
+If a user fails to login to their account 3 times... they will be prevented from logging in until an admin uses the admin tables to reset the login attempts by clicking the number.
 
 # WARNING
 DO NOT USE YOUR REAL UVM NETID AND PASSWORD when REGISTERING your account!
