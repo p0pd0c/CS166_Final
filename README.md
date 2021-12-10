@@ -10,7 +10,7 @@ This project is a culmination of the information taught in CS166 Cyber Security 
 The site implements authentication using PHP Sessions and authorization through role-based access control.
 
 ## Components
-The project consists of a MySQL database (hosted on silk) and the backend code is interleaved with the front end pages (using PHP). 
+The project consists of a MySQL database (hosted on silk) and the backend code is interleaved with the front end pages (using PHP, and jquery). 
 When a request is made to the webserver, the PHP interpreter will fire up and bake values into the page during execution flow and user navigation.
 
 ### Sessions
@@ -22,7 +22,12 @@ The project also implements WebAuth in order to protect admin actions in the DB.
 Using the admin page as such will also place the user's netId into tblAdmin. Only users present in tblAdmin will be able to authenticate with UVM's WebAuth (meaning that the username must also be a valid netId) to access the admin tables.
 
 ### Admin tables
-The admin tables allow admins to reset the login attempts (to unlock a locked account). It also allows the admin to issue a password reset and role changes (mentioned previously). Note: If a user forgets their password... they cannot reset it (admins may delete accounts however).. password resets are only enabled if the admin has requested it and the user can authenticate with the old password. 
+The admin tables allow admins to reset the login attempts (to unlock a locked account). It also allows the admin to issue a password reset and role changes (mentioned previously). Note: If a user forgets their password... they cannot reset it (admins may delete accounts however).. password resets are only enabled if the admin has requested it and the user can authenticate with the old password.
+
+### Strong password generator
+When a user is on the register page or viewing the password reset form (resulting from admin request), a button is displayed that generates a random, secure password that follows my password guidelines. 
+
+Clicking the button will generate a new password on the client side (prints it to the screen) and the user can choose to copy this password or make their own.
 
 
 # WARNING
