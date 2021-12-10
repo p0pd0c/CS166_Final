@@ -27,7 +27,7 @@ The admin tables allow admins to reset the login attempts (to unlock a locked ac
 ### Strong password generator
 When a user is on the register page or viewing the password reset form (resulting from admin request), a button is displayed that generates a random, secure password that follows my password guidelines. 
 
-Clicking the button will generate a new password on the client side (prints it to the screen) and the user can choose to copy this password or make their own.
+Clicking the button will generate a new password on the client side (prints it to the screen) and the user can choose to copy this password and paste it into the password field or make their own.
 
 
 # WARNING
@@ -40,3 +40,14 @@ Currently, only jdiscipi and jreddy1 are authorized to access the admin page via
 These users can create other admins using the admin tables from the admin page. 
 
 If you want to have your netId added to the table, please contact Jim or the project author.
+
+## Credentials
+Roles are granted only by admins who are tied to a uvm netId
+
+| username | password | access level (role) |
+|----------|----------|---------------------|
+| accountant | bHgUqGmMaYcJm!hWtMiJwEt2f | accountant |
+| engineer | uFeVjD3KaRgGjNmI#MsNsQcQc | engineer |
+| guest | hOqQ2PhPaRfYlRlUqWa-xEaEs | guest |
+| manager | tGx4pRoTnDxVf$fCkKdLdGkBh | manager |
+| admin | sMiDiNnAlYmBaAb3lTg*lMvRe | admin |
