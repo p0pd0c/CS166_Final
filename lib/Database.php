@@ -115,6 +115,7 @@ class DataBase {
         return $recordSet;
     }
 
+    // equivalent to insert but it returns a bool
     public function update($query, $values = '') {
         $status = false;
         $statement = $this->pdo->prepare($query);
@@ -128,6 +129,7 @@ class DataBase {
         return $status;
     }
 
+    // equivalent to insert - returns a bool
     public function delete($query, $values = '') {
         $status = false;
         $statement = $this->pdo->prepare($query);

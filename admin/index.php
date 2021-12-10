@@ -1,6 +1,7 @@
 <?php 
 include 'top.php';
 
+// Retrieve users in order to populate the admin tables
 $sqlUsers = "SELECT fldUsername, fldLoginAttempts, fldLevel FROM tblUser";
 $users = $thisDatabaseReader->select($sqlUsers, []);
 ?>
@@ -17,6 +18,8 @@ $users = $thisDatabaseReader->select($sqlUsers, []);
         </thead>
         <tbody>
         <?php 
+        // Iterate through all users from db and add a row with associated actions (unlock, reset pw, change role, and delete)
+        // Isn't PHP so lovely?!?
         foreach($users as $user) {
             print "<tr>";
                 print "<td>";
@@ -56,6 +59,9 @@ $users = $thisDatabaseReader->select($sqlUsers, []);
         </tbody>
     </table>
     <?php
+    // The Change Role button has been clicked
+    // Show the change role form
+    // Hidden field is used to pass along the user's username (primary key from tblUser)
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["btnRoleForm"])) {
         ?>
         <form action=<?php print PHP_SELF ?> method="post">
@@ -76,6 +82,8 @@ $users = $thisDatabaseReader->select($sqlUsers, []);
 </main>
 
 <?php 
+// The reset login attempts button was clicked
+// Set that user's attempts to 0 (unlock)
 if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["btnResetLoginAttempts"])) {
     $sqlResetLoginAttempts = "UPDATE tblUser SET fldLoginAttempts = 0 WHERE fldUsername = ?";
     $dataResetLoginAttemtps = array();
@@ -84,6 +92,9 @@ if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["btnResetLoginAttempts"
     header("Location: index.php");
 }
 
+// The reset password button was clicked
+// Let the user know they need to change their password
+// They will see this on the home page
 if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["btnResetPassword"])) {
     $sqlResetPassword = "UPDATE tblUser SET fldResetPassword = ? WHERE fldUsername = ?";
     $dataResetPassword = array();
@@ -93,6 +104,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST["btnResetPassword"])) {
     header("Location: index.php");
 }
 
+// The delete user button was clicked
 if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["btnDeleteUser"])) {
     $sqlDeleteUser = "DELETE FROM tblUser WHERE fldUsername = ?";
     $dataDeleteUser = array();
@@ -101,6 +113,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["btnDeleteUser"])) {
     header("Location: index.php");
 }
 
+// The change user's role form was completed, push change to the db
 if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["btnChangeUserRole"])) {
     $sqlChangeUserRole = "UPDATE tblUser SET fldLevel = ? WHERE fldUsername = ?";
     $dataChangeUserRole = array();

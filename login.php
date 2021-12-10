@@ -1,12 +1,15 @@
 <?php
 include 'top.php';
 
+
+// Already logged in? Take them home
 if(isset($_SESSION["username"])) {
     header("Location: index.php");
     die();
 }
-?>
 
+// Conditionally render the login form to prompt user for username and password
+?>
 <?php if($_SERVER['REQUEST_METHOD'] === "GET"): ?>
 <main>
     <form action=<?php print PHP_SELF ?> method="post">
@@ -19,7 +22,8 @@ if(isset($_SESSION["username"])) {
     <a href="register.php">Register</a>
 </main>
 <?php else: ?>
-    <?php 
+    <?php
+    // Has the user submitted credentials
     if(isset($_POST["loginSubmit"])) {
         // Get users from db
         $sqlGetUsers = "SELECT fldUsername, fldPassword, fldLoginAttempts FROM tblUser";
@@ -39,6 +43,7 @@ if(isset($_SESSION["username"])) {
                 $attemptedHash = hash("sha256", $salt . getData("password"));
                 if($attemptedHash === $storedHash) {
                     $authorized = TRUE;
+                    // Only authenticate the user if they are not locked out (exceeded maximum incorrect attempts)
                     if($user["fldLoginAttempts"] < 3) {
                         $_SESSION["username"] = $user["fldUsername"];
                     } else {
@@ -61,10 +66,12 @@ if(isset($_SESSION["username"])) {
             }
         }
 
+        // if this session variable is set, login was successful, take the user to the home page
         if(isset($_SESSION["username"])) {
             header("Location: index.php");
             die();
         } else {
+            // Warn the user if they got their password wrong
             if($updated) {
                 print "<p>Login attempt failed (attempt recorded). Username or password incorrect. Please go back to the <a href='login.php'>login page</a></p>";
                 die();
